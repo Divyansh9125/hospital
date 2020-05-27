@@ -1,0 +1,24 @@
+{% extends 'patient/base.html'%}
+{% block content %}
+{% load crispy_forms_tags %}
+<div class="form-group" class="content-section">
+    <form method="POST">
+        {% csrf_token %}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">
+                Update Profile
+            </legend>
+            <label for="usern">Username:</label>
+            <input type="text" class="form-control" id="usern" name="username" value="{{user.username}}" disabled style="cursor: not-allowed;"> <br>
+            <label for="name">Name:</label>
+            <input type="text" class="form-control" id="name" name="name" value="{{user.first_name}} {{user.last_name}}" disabled style="cursor: not-allowed;"> <br>
+            <label for="eamail">Email:</label>
+            <input type="text" class="form-control" id="email" name="email" value="{{user.email}}" disabled style="cursor: not-allowed;"> <br>
+            {{ form | crispy }}
+        </fieldset>
+        <div class="form-group">
+            <button class="btn btn-outline-info" type="submit">Submit</button>
+        </div>
+    </form>
+</div>
+{% endblock content %}
