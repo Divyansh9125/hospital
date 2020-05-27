@@ -17,3 +17,8 @@ class Appointments(models.Model):
 
     class Meta:
         unique_together = ['time', 'date', 'pat', 'doc']
+
+class Account(models.Model):
+    paid = models.DecimalField(max_digits=7, decimal_places=2)
+    total = models.DecimalField(max_digits=7, decimal_places=2)
+    pat = models.ForeignKey(PatientProfile, on_delete=models.SET_DEFAULT, null=True, default=None)

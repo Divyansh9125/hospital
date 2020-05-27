@@ -58,4 +58,54 @@
         </a>
     </div>
 </div>
+<br>
+<br>
+<legend class="border-bottom mb-4">
+    Payments: 
+</legend>
+<div class="row">
+    <div class="col">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Patient</th>
+                    <th>Paid</th>
+                    <th>Due</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for account in allacc %}
+                <tr>
+                    <td>{{account.pat}}</td>
+                    <td>{{account.paid}}</td>
+                    <td>{{account.total}} - {{account.paid}}</td>
+                    <td>{{appointment.total}}</td>
+                    <td>
+                        <form method='POST' action="{% url 'upd-acc'%}">
+                            <input type="text" id="pk" name="pk" value="{{appointment.id}}" hidden>
+                            <button class="btn btn-primary" type="submit">
+                                Update
+                            </button>
+                        </form>
+                        </td>
+                        <td>
+                            <form method='POST' action="{% url 'del-acc'%}">
+                            <input type="text" id="pk" name="pk" value="{{appointment.id}}" hidden>
+                            <button class="btn btn-danger" type="submit">
+                                Delete
+                            </button>
+                        </form>
+                        </td>
+                </tr>
+                {%endfor%} 
+            </tbody>
+        </table>
+        <a href="{% url 'add-acc' %}">
+        <button class="btn btn-primary" style="margin-bottom: 20px;">
+            Add Payment Info
+        </button>
+        </a>
+    </div>
+</div>
 {% endblock content %}
