@@ -1,5 +1,6 @@
 {% extends 'reception/base.html'%}
 {% block content %}
+{% load mathfilters %}
 <h2>Total Appointments: {{total}}</h2>
 <h2>Total Appointments completed: {{completed}}</h2>
 <h2>Total Appointments pending: {{pending}}</h2>
@@ -72,18 +73,20 @@
                     <th>Paid</th>
                     <th>Due</th>
                     <th>Total</th>
+                    <th>Update</th>
+                    <th>Delete</th>
                 </tr>
             </thead>
             <tbody>
                 {% for account in allacc %}
                 <tr>
                     <td>{{account.pat}}</td>
-                    <td>{{account.paid}}</td>
-                    <td>{{account.total}} - {{account.paid}}</td>
-                    <td>{{appointment.total}}</td>
+                    <td style="color: green;">&#8377 {{account.paid}}</td>
+                    <td style="color: red;">&#8377 {{account.total|sub:account.paid}}</td>
+                    <td style="color: blue;">&#8377 {{account.total}}</td>
                     <td>
                         <form method='POST' action="{% url 'upd-acc'%}">
-                            <input type="text" id="pk" name="pk" value="{{appointment.id}}" hidden>
+                            <input type="text" id="pk" name="pk" value="{{account.id}}" hidden>
                             <button class="btn btn-primary" type="submit">
                                 Update
                             </button>
@@ -91,7 +94,7 @@
                         </td>
                         <td>
                             <form method='POST' action="{% url 'del-acc'%}">
-                            <input type="text" id="pk" name="pk" value="{{appointment.id}}" hidden>
+                            <input type="text" id="pk" name="pk" value="{{account.id}}" hidden>
                             <button class="btn btn-danger" type="submit">
                                 Delete
                             </button>

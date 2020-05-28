@@ -25,7 +25,8 @@ def dashboardView(request):
             pending = total-completed
             allapps = Appointments.objects.all()
             allacc = Account.objects.all()
-            return render(request, 'reception/dashboard.html', {'total':total, 'completed': completed, 'pending': pending, 'allapps': allapps, 'allacc': allacc})
+            return render(request, 'reception/dashboard.html', 
+            {'total':total, 'completed': completed, 'pending': pending, 'allapps': allapps, 'allacc': allacc})
         else:
             return redirect('login')
 
@@ -112,8 +113,8 @@ def updateAccountView(request):
         curr_user = request.user
         if curr_user.label == 'R':
             if request.method == 'POST':
-                app_id = request.POST.get('pk')
-                return redirect(reverse('upd-acc-form', args=(app_id,)))
+                acc_id = request.POST.get('pk')
+                return redirect(reverse('upd-acc-form', args=(acc_id,)))
 
 @login_required
 def updateAccountFormView(request, pk=0):
