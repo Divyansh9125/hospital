@@ -7,4 +7,4 @@ Specifications:<br/>
   Python-version: 3.7.5<br/>
   Editor: VS Code<br/>
   
-  Youtube video for this project:
+  Youtube video for this project: https://www.youtube.com/watch?v=bTNorF2nW9A
